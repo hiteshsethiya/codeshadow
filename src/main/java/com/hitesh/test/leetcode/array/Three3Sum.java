@@ -1,7 +1,6 @@
 package com.hitesh.test.leetcode.array;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Three3Sum {
 
@@ -27,9 +26,9 @@ public class Three3Sum {
     static public Set<List<Integer>> twoSum(int[] nums, int excludeI, int target) {
         Set<List<Integer>> output = new HashSet<>();
         Map<Integer, Integer> idxMap = new HashMap<>();
-        for(int i = excludeI + 1; i < nums.length; ++i) {
+        for (int i = excludeI + 1; i < nums.length; ++i) {
             Integer iDiff = target - nums[i];
-            if(idxMap.containsKey(iDiff)) {
+            if (idxMap.containsKey(iDiff)) {
                 List<Integer> pair = new ArrayList<>();
                 pair.add(nums[i]);
                 pair.add(iDiff);
@@ -40,11 +39,12 @@ public class Three3Sum {
         return output;
     }
 
-    static public List<List<Integer>> threeSum(int[] nums) {
+    // 	Accepted	661 ms	46.9 MB	java
+    static public List<List<Integer>> threeSumWithoutSorting(int[] nums) {
         Set<List<Integer>> output = new HashSet<>();
-        for(int i = 0; i < nums.length; ++i) {
+        for (int i = 0; i < nums.length; ++i) {
             Set<List<Integer>> pairSum = twoSum(nums, i, -nums[i]);
-            if(!pairSum.isEmpty()) {
+            if (!pairSum.isEmpty()) {
                 for (List<Integer> pair : pairSum) {
                     pair.add(nums[i]);
                     pair.sort(Integer::compareTo);
@@ -55,9 +55,41 @@ public class Three3Sum {
         return new ArrayList<>(output);
     }
 
+    // Accepted	160 ms	46.2 MB
+    static public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> output = new HashSet<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; ++i) {
+            int target = -nums[i];
+            List<Integer> pairs = new ArrayList<>(3);
+            for (int j = i + 1, k = nums.length - 1; j < k; ) {
+                int sum = nums[j] + nums[k];
+                if (sum == target) {
+                    pairs.add(nums[i]);
+                    pairs.add(nums[j]);
+                    pairs.add(nums[k]);
+                    output.add(pairs);
+                    ++j;
+                    --k;
+                    pairs = new ArrayList<>();
+                } else if (sum > target) {
+                    --k;
+                }
+                else {
+                    ++j;
+                }
+            }
+        }
+        return new ArrayList<>(output);
+    }
+
 
     public static void main(String[] args) {
-        int[] a = new int[]{-1, 0, 1, 2, -1, -4};
+        int[] a = new int[]{-1, 0, 1, 2, -1, -4, 0, 0};
+        System.out.println(threeSum(a));
+        a = new int[]{0,0,0,0};
+        System.out.println(threeSum(a));
+        a = new int[]{-2,0,1,1,2};
         System.out.println(threeSum(a));
     }
 
