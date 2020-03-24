@@ -55,11 +55,12 @@ public class Three3Sum {
         return new ArrayList<>(output);
     }
 
-    // Accepted	160 ms	46.2 MB
+    // Accepted	26 ms	45.7 MB
     static public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> output = new HashSet<>();
         Arrays.sort(nums);
+        Set<List<Integer>> output = new HashSet<>();
         for (int i = 0; i < nums.length - 2; ++i) {
+            if(nums[i] > 0) break;
             int target = -nums[i];
             List<Integer> pairs = new ArrayList<>(3);
             for (int j = i + 1, k = nums.length - 1; j < k; ) {
@@ -69,6 +70,8 @@ public class Three3Sum {
                     pairs.add(nums[j]);
                     pairs.add(nums[k]);
                     output.add(pairs);
+                    while(i < j && nums[i] == nums[i + 1]) ++i;
+                    while(i < j && nums[j] == nums[j - 1]) --j;
                     ++j;
                     --k;
                     pairs = new ArrayList<>();
