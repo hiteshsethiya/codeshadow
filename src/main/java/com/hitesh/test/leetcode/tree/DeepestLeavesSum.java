@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.TreeMap;
+
+import static com.hitesh.test.leetcode.tree.TreeNode.stringToTreeNode;
 
 public class DeepestLeavesSum {
 
@@ -22,16 +25,6 @@ public class DeepestLeavesSum {
      * The number of nodes in the tree is between 1 and 10^4.
      * The value of nodes is between 1 and 100.
      */
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     static public int getMaxDepth(TreeNode root) {
         if(root == null) return 0;
@@ -53,55 +46,11 @@ public class DeepestLeavesSum {
         return getSum(root, 0, getMaxDepth(root));
     }
 
-    public static TreeNode stringToTreeNode(String input) {
-        input = input.trim();
-//        input = input.substring(0, input.length() - 1);
-        if (input.length() == 0) {
-            return null;
-        }
-
-        String[] parts = input.split(",");
-        String item = parts[0];
-        TreeNode root = new TreeNode(Integer.parseInt(item));
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
-        nodeQueue.add(root);
-
-        int index = 1;
-        while(!nodeQueue.isEmpty()) {
-            TreeNode node = nodeQueue.remove();
-
-            if (index == parts.length) {
-                break;
-            }
-
-            item = parts[index++];
-            item = item.trim();
-            if (!item.equals("null")) {
-                int leftNumber = Integer.parseInt(item);
-                node.left = new TreeNode(leftNumber);
-                nodeQueue.add(node.left);
-            }
-
-            if (index == parts.length) {
-                break;
-            }
-
-            item = parts[index++];
-            item = item.trim();
-            if (!item.equals("null")) {
-                int rightNumber = Integer.parseInt(item);
-                node.right = new TreeNode(rightNumber);
-                nodeQueue.add(node.right);
-            }
-        }
-        return root;
-    }
-
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while ((line = in.readLine()) != null) {
-            TreeNode root = stringToTreeNode(line);
+            TreeNode root = TreeNode.stringToTreeNode(line);
 
             int ret = deepestLeavesSum(root);
 
