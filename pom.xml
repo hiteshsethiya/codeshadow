@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.codeshadow.test</groupId>
+    <groupId>com.hitesh.test</groupId>
     <artifactId>codeshadow</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
@@ -15,6 +15,28 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>com.hitesh.test.soap</generatePackage>
+                    <schemas>
+                        <schema>
+                            <url>https://bsestarmfdemo.bseindia.com/MFOrderEntry/MFOrder.svc?wsdl=wsdl0</url>
+                        </schema>
+                    </schemas>
                 </configuration>
             </plugin>
         </plugins>
@@ -30,6 +52,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.jvnet.jaxb2.maven2</groupId>
+            <artifactId>maven-jaxb2-plugin</artifactId>
+            <version>0.14.0</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -51,7 +78,6 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.5</version>
         </dependency>
-
     </dependencies>
 
 </project>

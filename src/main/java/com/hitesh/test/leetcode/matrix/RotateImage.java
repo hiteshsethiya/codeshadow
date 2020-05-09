@@ -1,4 +1,4 @@
-package com.hitesh.test.matrix;
+package com.hitesh.test.leetcode.matrix;
 
 public class RotateImage {
 
