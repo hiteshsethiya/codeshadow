@@ -25,41 +25,24 @@ public class BinaryTreeZigzagLevelOrderTraversal {
      * ]
      */
 
-    public static boolean isEmpty(TreeNode node) {
-        return node.left == node;
+    static public void bfs(TreeNode node, int level, List<List<Integer>> output) {
+        if(node == null) return;
+        if(level >= output.size()) {
+            output.add(level, new ArrayList<>());
+        }
+        if(level % 2 == 0) {
+            output.get(level).add(node.val);
+        } else {
+            output.get(level).add(0, node.val);
+        }
+        if(node.left != null) bfs(node.left, level + 1, output);
+        if(node.right != null) bfs(node.right, level + 1, output);
     }
 
     static public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         if(root == null) return new ArrayList<>();
-        boolean leftToRight = false;
-        TreeNode empty = new TreeNode(Integer.MIN_VALUE);
-        empty.left = empty;
-        empty.right = empty;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(empty);
         List<List<Integer>> output = new ArrayList<>();
-        List<Integer> iOutput = new ArrayList<>();
-        while(!queue.isEmpty()) {
-            TreeNode pop = queue.poll();
-            if(isEmpty(pop)) {
-                if(queue.isEmpty()) break;
-                queue.add(empty);
-                leftToRight = !leftToRight;
-                output.add(iOutput);
-                iOutput = new ArrayList<>();
-            } else {
-                iOutput.add(pop.val);
-                if(leftToRight) {
-                    if(pop.left != null) queue.add(pop.left);
-                    if(pop.right != null) queue.add(pop.right);
-                } else {
-                    if(pop.right != null) queue.add(pop.right);
-                    if(pop.left != null) queue.add(pop.left);
-                }
-            }
-        }
-        output.add(iOutput);
+        bfs(root, 0, output);
         return output;
     }
 
