@@ -17,9 +17,6 @@ public class TopologicalSort {
             this.adjacentNodes = new LinkedList<>();
             this.visited = false;
         }
-//        double verify
-//                oracle
-//         integral ad science
 
         @Override
         public boolean equals(Object o) {
