@@ -62,7 +62,7 @@ public class WordLadder {
     }
 
     private int L;
-    private Map<String, List<String>> genericTransforms;
+    private final Map<String, List<String>> genericTransforms;
 
     public WordLadder() {
         this.genericTransforms = new HashMap<>();

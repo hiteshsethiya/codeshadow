@@ -55,8 +55,11 @@ public class PancakeSort {
         // your code goes here
         for(int i = arr.length - 1; i > 0; --i) {
             int maxI = maxIdx(arr, i);
+            System.out.println("i : " + i + " : maxI : " + maxI + " : " + Arrays.toString(arr));
             flip(arr, maxI);
+            System.out.println("i : " + i + " : maxI : " + maxI + " : " + Arrays.toString(arr));
             flip(arr, i);
+            System.out.println("i : " + i + " : maxI : " + maxI + " : " + Arrays.toString(arr));
         }
         return arr;
     }
