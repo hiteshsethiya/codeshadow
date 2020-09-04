@@ -31,11 +31,11 @@ public class LongestIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        int[] a = new int[] {10,9,2,5,3,7,101,18};
+        /*int[] a = new int[] {10,9,2,5,3,7,101,18};
         System.out.println(lengthOfLIS(a));
         a = new int[] {};
         System.out.println(lengthOfLIS(a));
         a = new int[] {8, 100, 150, 10, 12, 14, 110};
-        System.out.println(lengthOfLIS(a));
+        System.out.println(lengthOfLIS(a));*/
     }
 }

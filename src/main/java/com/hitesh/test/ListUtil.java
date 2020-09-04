@@ -26,9 +26,27 @@ public class ListUtil {
 
     public static void main(String[] args) {
 //        generateArraySequential(1, 20000);
-        generateArray("[[1,3], [0,2], [1,3], [0,2]]");
-        generateArray("[[1,2,3], [0,2], [0,1,3], [0,2]]");
-        generateArray("[[2,3],[1,2],[1,3]]");
+//        generateArray("[[0,1,0],[0,0,1],[1,1,1],[0,0,0]]");
+
+        String[] a = {
+        };
+        String[] b = {
+        };
+
+        String q = "REVOKE DROP,CREATE ON `db_name}}`.* FROM 'user_name}}'@'%' ;\n" +
+                "GRANT SELECT, INSERT, UPDATE ON `db_name}}`.* TO 'user_name}}'@'%';\n" +
+                "FLUSH PRIVILEGES;";
+
+        for(int i = 0; i < a.length; ++i) {
+            System.out.println(
+                    q.replaceAll(
+                            "db_name}}", b[i]
+                    ).replaceAll(
+                            "user_name}}", a[i]
+                    )
+            );
+        }
+
     }
 
     public static void generateArray(String s) {
