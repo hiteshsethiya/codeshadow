@@ -26,7 +26,7 @@ public class ListUtil {
 
     public static void main(String[] args) {
 //        generateArraySequential(1, 20000);
-//        generateArray("[[0,1,0],[0,0,1],[1,1,1],[0,0,0]]");
+        generateArray("[[0,0],[1,1],[1,0],[-1,1]]");
 
         String[] a = {
         };
